@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field
-from typing import Dict, List, Any
+from pydantic import BaseModel
+from typing import Dict, Any
 
 class VisitCount(BaseModel):
     visits: int
