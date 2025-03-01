@@ -6,38 +6,28 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - REDIS_NODES=redis://redis1:6379,redis://redis2:6379,redis://redis3:6379
+      - REDIS_NODES=redis://redis1:7070,redis://redis2:7071
       - DEBUG=true
     depends_on:
       - redis1
       - redis2
-      - redis3
 
   redis1:
     image: redis:7
     ports:
-      - "6379:6379"
+      - "7070:7070"
     volumes:
       - redis1_data:/data
-    command: redis-server --appendonly yes
+    command: redis-server --port 7070 --appendonly yes
 
   redis2:
     image: redis:7
     ports:
-      - "6380:6379"
+      - "7071:7071"
     volumes:
       - redis2_data:/data
-    command: redis-server --appendonly yes
-
-  redis3:
-    image: redis:7
-    ports:
-      - "6381:6379"
-    volumes:
-      - redis3_data:/data
-    command: redis-server --appendonly yes
+    command: redis-server --port 7071 --appendonly yes
 
 volumes:
   redis1_data:
   redis2_data:
-  redis3_data: 
